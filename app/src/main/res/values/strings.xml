@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Todo3</string>
     <string name="action_settings">Settings</string>
+    <string name="work">Work</string>
+    <string name="grocery">Grocery</string>
+    <string name="personal">Personal</string>
+    <string name="categories">Categories</string>
     <string-array name="categories_array">
         <item>Select a Category:</item>
         <item>Work</item>

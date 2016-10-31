@@ -10,8 +10,8 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 
 public class DatePickerFragment extends DialogFragment
-        implements DatePickerDialog.OnDateSetListener {
 
+        implements DatePickerDialog.OnDateSetListener {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -27,8 +27,9 @@ public class DatePickerFragment extends DialogFragment
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
-    }
+        //Somehow make a fucking date.
+
+    }//return dueDate
 
 
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,12 +15,13 @@ import java.util.ArrayList;
  * Created by Matthew.Watson on 10/25/16.
  */
 
-public class MyCustomAdapter extends RecyclerView.Adapter<MyCustomAdapter.noteViewHolder>{
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.noteViewHolder>{
     private Context context;
     protected ArrayList<ThumbNail> thumbNailArrayList;
     private LayoutInflater inflater;
+    private int previousPosition = 0;
 
-    public MyCustomAdapter(Context context, ArrayList<ThumbNail> inflaterArrayList){
+    public RecyclerAdapter(Context context, ArrayList<ThumbNail> inflaterArrayList){
         this.context = context;
         this.thumbNailArrayList = inflaterArrayList;
         inflater = LayoutInflater.from(context);
@@ -35,11 +37,13 @@ public class MyCustomAdapter extends RecyclerView.Adapter<MyCustomAdapter.noteVi
     }
 
     @Override
-    public void onBindViewHolder(noteViewHolder holder, int position) {
+    public void onBindViewHolder(noteViewHolder holder, final int position) {
         holder.textview.setText(thumbNailArrayList.get(position).thumbTitle);
         holder.imageView.setImageResource(thumbNailArrayList.get(position).imageId);
-
+        previousPosition = position;
+//        final int currentPosition = position;
     }
+
 
     @Override
     public int getItemCount() {
@@ -49,7 +53,7 @@ public class MyCustomAdapter extends RecyclerView.Adapter<MyCustomAdapter.noteVi
         return 0;
     }
 
-    public static class noteViewHolder extends RecyclerView.ViewHolder{
+    public class noteViewHolder extends RecyclerView.ViewHolder{
         TextView textview;
         ImageView imageView;
 
@@ -57,6 +61,19 @@ public class MyCustomAdapter extends RecyclerView.Adapter<MyCustomAdapter.noteVi
             super(itemView);
             textview = (TextView) itemView.findViewById(R.id.txv_row);
             imageView = (ImageView) itemView.findViewById(R.id.img_row);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    Toast.makeText(context, "onClick @" + position, Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
         }
     }
+
+
+
 }
